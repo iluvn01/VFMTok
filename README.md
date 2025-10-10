@@ -166,12 +166,6 @@ scripts/autoregressive/torchrun.sh test_net.py --vq-ckpt tokenizer/vfmtok-tokeni
 
 If you find VFMTok useful for your research and applications, please kindly cite using this BibTeX:
 ```
-@article{zheng2025holistic,
-  title={Holistic Tokenizer for Autoregressive Image Generation},
-  author={Zheng, Anlin and Wang, Haochen and Zhao, Yucheng and Deng, Weipeng and Wang, Tiancai and Zhang, Xiangyu and Qi, Xiaojuan},
-  journal={arXiv preprint arXiv:2507.02358},
-  year={2025}
-}
 @article{zheng2025vision,
   title={Vision Foundation Models as Effective Visual Tokenizers for Autoregressive Image Generation},
   author={Zheng, Anlin and Wen, Xin and Zhang, Xuanyang and Ma, Chuofan and Wang, Tiancai and Yu, Gang and Zhang, Xiangyu and Qi, Xiaojuan},
