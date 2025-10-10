@@ -10,4 +10,4 @@ rm -rf tokenizer/tokenizer_image/__pycache__ paintmind/titok/__pycache__ paintmi
 scripts/autoregressive/torchrun.sh train_c2i.py --gpt-type c2i --image-size 336 --gpt-model ${model_type} --downsample-size 16 --num-workers 4   \
     --anno-file imagenet/lmdb/train_lmdb --global-batch-size 512 --ckpt-every 10000 --ema --log-every 1 --results-dir output \
     --vq-model VQ-16 --vq-ckpt pretrained_models/vfmtok-tokenizer.pt --latent-size 16 --mixed-precision bf16     \
-    --epochs 300 2>&1 | tee 'train.log'
+    --epochs 300
