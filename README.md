@@ -9,7 +9,7 @@
 <img src="assets/vfmtok-flowchart.png" width=95%>
 <p>
 
-This is a PyTorch/GPU implementation of the paper [**Vision Foundation Models as Effective Visual Tokenizers for Autoregressive Generation**](https://arxiv.org/pdf/2507.08441), which directly utilizes the features from the frozen pre-trained vision foundation model (VFM) to reconstruct the original image. To achieve this, VFMTok innovatively designed two key components: (1) a region-adaptive quantization framework that reduces redundancy in the pre-trained features on regular 2D grids, and (2) a semantic reconstruction objective that aligns the tokenizer’s outputs with the foundation model’s representations to preserve semantic fidelity. Once the trained VFMTok is integrated into the autoregressive (AR) generative models, it achieves notable results on the class-to-image generation task, while accelerating convergence by a factor of three. Besides, it also enables high-fidelity class-conditional synthesis without the requirement of a CFG (classifier-free guidance).
+This is a PyTorch/GPU implementation of the paper **Vision Foundation Models as Effective Visual Tokenizers for Autoregressive Generation**, which directly utilizes **the features from the frozen pre-trained vision foundation model (VFM) to reconstruct the original image**. To achieve this, VFMTok innovatively designed two key components: (1) a **region-adaptive quantization** framework that reduces redundancy in the pre-trained features on regular 2D grids, and (2) a semantic reconstruction objective that aligns the tokenizer’s outputs with the foundation model’s representations to preserve semantic fidelity. Once the trained VFMTok is integrated into the autoregressive (AR) generative models, it achieves notable results on the class-to-image generation task, while accelerating convergence by a factor of three. Besides, it also enables high-fidelity class-conditional synthesis **without the requirement of a CFG** (classifier-free guidance).
 
 This repo contains:
 
@@ -23,7 +23,7 @@ This repo contains:
 
 - [2024/07/11] 🔥 **VFMTok** has been released. Checkout the [paper](https://arxiv.org/pdf/2507.08441) for details.🔥
 - [2025/09/18] 🔥 **VFMTok has been accepted by NeurIPS 2025!** 🔥
-- [2025/10/11] 🔥 [Image tokenizers](https://huggingface.co/yexiguafu/hita-gen/tree/main) and [AR models](https://huggingface.co/yexiguafu/hita-gen/tree/main) for class-conditional image generation are released. 🔥
+- [2025/10/11] 🔥 [Image tokenizers](https://huggingface.co/yexiguafu/VFMTok/tree/main/DINOv2/tokenizer) and [AR models](https://huggingface.co/yexiguafu/VFMTok/tree/main/DINOv2) for class-conditional image generation are released. 🔥
 - [2025/10/11] 🔥 All codes of VFMTok have been released. 🔥
 
 ## Contents
@@ -39,7 +39,7 @@ If you are not using Linux, do *NOT* proceed.
 
 1. Clone this repository and navigate to Hita folder
 ```bash
-git clone https://github.com/CVMI-Lab/Hita.git
+git clone https://github.com/CVMI-Lab/VFMTok.git
 cd Hita
 ```
 
@@ -56,61 +56,47 @@ pip install -e .
 pip install -e ".[train]"
 pip install flash-attn --no-build-isolation
 ```
-
+4. Install deformable attention module
+```
+vfmtok/modules/ops
+bash make.sh
+```
 ## Model Zoom
 
 In this repo, we release:
-* Two image tokenizers: Hita-V(anilla) and Hita-U(ltra).
+* One image tokenizers: VFMTok(DINOv2).
 * Class-conditional autoregressive generative models ranging from 100M to 3B parameters.
 
 ### 1. VQ-VAE models
-In this repo, we release two image tokenizers: Hita-V(anilla) and Hita-U(ltra). Hita-V is utilized in the original paper, while Hita-U is an updated version that uses more advanced techniques, such as the DINO discriminator and the learning objective of pre-trained vision foundation model reconstruction proposed in [VFMTok](https://arxiv.org/pdf/2507.08441), which exhibits better image reconstruction and generation quality. 
+In this repo, we release one image tokenizers: VFMTok(DINOv2). It directly utilizes the features from the frozen pre-trained VFM -- DINOv2, to reconstruct the image. To achieve this, VFMTok innovatively designed two key components: (1) a region-adaptive quantization framework that reduces redundancy in the pre-trained features on regular 2D grids, and (2) a semantic reconstruction objective that aligns the tokenizer’s outputs with the foundation model’s representations to preserve semantic fidelity. VFMTok exhibits better image reconstruction and semantic fidelity compared to the others.
 
 Method | tokens | rFID (256x256) | rIS (256x256)    | weight
 ---    | :---:  |:---:|:---:   | :---: 
-Hita-V |  569   | 1.03  | 198.5   | [hita-vanilla.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/tokenizer/hita-tok.pt)
-Hita-U |  569   | **0.57**  | **221.8**   | [hita-ultra.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/tokenizer/hita-ultra.pt)
+VFMTok |  256   | 0.98 | 215.4   | [hita-vanilla.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/tokenizer/vfmtok-tokenizer.pt)
 
-### 2. AR generation models with Hita-V
-Method   | params | epochs | FID  |  IS   | weight 
----      | :---:  | :---:  | :---:|:---:  |:---:|
-HitaV-B  | 111M   |   50   | 5.85 | 212.3 | [HitaV-B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-B/GPT-B-50e.pt)
-HitaV-B  | 111M   |  300   | 4.33 | 238.9 | [HitaV-B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-B/GPT-B-300e.pt)
-HitaV-L  | 343M   |   50   | 3.75 | 262.1 | [HitaV-L-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-L/GPT-L-50e.pt)
-HitaV-L  | 343M   |  300   | 2.86 | 267.3 | [HitaV-L-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-L/GPT-L-300e.pt)
-HitaV-XL | 775M   |   50   | 2.98 | 253.4 | [HitaV-XL-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-XL/GPT-XL-50e.pt)
-HitaV-XXL| 1.4B   |   50   | 2.70 | 274.8 | [HitaV-XXL-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-XXL/GPT-XXL-50e.pt)
-HitaV-2B | 2.0B   |   50   | 2.59 | 281.9 | [HitaV-2B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/vanilla/GPT-2B/GPT-2B-50e.pt)
+### 2. AR generation models with classifier-free guidance.
+Once the trained VFMTok(DINOv2) is integrated into autoregressive (AR) generative models, it ahieves notable image generation performance.
 
-### 3. AR generation with Hita-U
-Method  | params | epochs  | FID |  IS | weight 
----     |:---:|:---:| :---: | :---: |:---:|
-HitaU-B  | 111M | 50  | 4.21 | 229.0 | [HitaU-B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-B/GPT-B-50e.pt)
-HitaU-B  | 111M | 250 | 3.49 | 237.5 | [HitaU-B-250e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-B/GPT-B-250e.pt)
-HitaU-L  | 343M | 50  | 2.97 | 273.3 | [HitaU-L-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-L/GPT-L-50e.pt)
-HitaU-L  | 343M | 250 | 2.44 | 274.6 | [HitaU-L-250e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-L/GPT-L-250e.pt)
-HitaU-XL | 775M | 50  | 2.40 | 276.3 | [HitaU-XL-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XL/GPT-XL-50e.pt)
-HitaU-XL | 775M | 100 | 2.16 | 275.3 | [HitaU-XL-100e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XL/GPT-XL-100e.pt)
-HitaU-XXL| 1.4B | 50  | 2.07 | 273.8 | [HitaU-XXL-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XXL/GPT-XXL-50e.pt)
-HitaU-XXL| 1.4B | 100 | 2.01 | 276.4 | [HitaU-XXL-100e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XXL/GPT-XXL-100e.pt)
-HitaU-2B | 2.0B | 50  | 1.93 | 286.0 | [HitaU-2B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-2B/GPT-2B-50e.pt)
-HitaU-2B | 2.0B | 100 | 1.82 | 282.9 | [HitaU-2B-100e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-2B/GPT-2B-100e.pt)
+Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight 
+---      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|  |:---:|
+VFMTok-B  | 111M   |  300   | 3.43 | 5.88 | 252.2 | 0.85 | 0.53 | [VFMTok-B-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)
+VFMTok-L  | 343M   |  300   | 2.76 | 5.69 | 276.1 | 0.84 | 0.57 | [VFMTok-L-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)
+VFMTok-XL | 775M   |  200   | 2.38 | 5.54 | 277.2 | 0.83 | 0.60 | [VFMTok-XL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt)
+VFMTok-XXL| 1.4B   |  200   | 2.28 | 5.49 | 274.3 | 0.83 | 0.60 | [VFMTok-XXL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt)
+VFMTok-2B | 2.0B   |  200   | 2.27 | 5.56 | 283.6 | 0.82 | 0.61 | [VFMTok-2B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt)
+VFMTok-3B | 3.1B   |  200   | 2.07 | 6.23 | 280.4 | 0.82 | 0.61 | [VFMTok-3B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt)
 
-### 4. AR generation with CFG-free guidance
-Once the pre-trained VFM features and the original image reconstruction are simultaneously conducted, we found that the trained Hita-U(ltra), when integrated into the AR generation models, can achieve image generation without CFG-guidance.
+### 3. AR generation with CFG-free guidance
+The trained VFMTok(DINOv2), when integrated into the AR generation models, can also achieve impressive image generation quality without CFG-guidance (CFG-free guidance).
 
-Method  | params | epochs  | FID |  IS| weight 
----     | :---: |:---:| :---:|:---:  |:---:|
-HitaU-B  | 111M | 50  | 8.32 | 108.5 | [HitaU-B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-B/GPT-B-50e.pt)
-HitaU-B  | 111M | 250 | 5.19 | 138.9 | [HitaU-B-250e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-B/GPT-B-250e.pt)
-HitaU-L  | 343M | 50  | 3.96 | 151.8 | [HitaU-L-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-L/GPT-L-50e.pt)
-HitaU-L  | 343M | 250 | 2.46 | 188.9 | [HitaU-L-250e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-L/GPT-L-250e.pt)
-HitaU-XL | 775M | 50  | 2.66 | 178.9 | [HitaU-XL-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XL/GPT-XL-50e.pt)
-HitaU-XL | 775M | 100 | 2.21 | 195.8 | [HitaU-XL-100e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XL/GPT-XL-100e.pt)
-HitaU-XXL| 1.4B | 50  | 2.21 | 196.0 | [HitaU-XXL-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XXL/GPT-XXL-50e.pt)
-HitaU-XXL| 1.4B | 100 | 1.84 | 217.2 | [HitaU-XXL-100e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-XXL/GPT-XXL-100e.pt)
-HitaU-2B | 2.0B | 50  | 1.97 | 208.6 | [HitaU-2B-50e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-2B/GPT-2B-50e.pt)
-HitaU-2B | 2.0B | 100 | 1.69 | 233.0 | [HitaU-2B-100e.pt](https://huggingface.co/yexiguafu/hita-gen/blob/main/ultra/GPT-2B/GPT-2B-100e.pt)
+Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight 
+---      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|  |:---:|
+VFMTok-B  | 111M   |  300   | 3.09 | 5.67 | 173.6 | 0.80 | 0.58 | [VFMTok-B-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)
+VFMTok-L  | 343M   |  300   | 2.15 | 5.44 | 230.1 | 0.82 | 0.60 | [VFMTok-L-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)
+VFMTok-XL | 775M   |  200   | 2.06 | 5.59 | 257.2 | 0.82 | 0.61 | [VFMTok-XL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt)
+VFMTok-XXL| 1.4B   |  200   | 2.09 | 5.48 | 259.3 | 0.82 | 0.61 | [VFMTok-XXL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt)
+VFMTok-2B | 2.0B   |  200   | 2.20 | 5.54 | 279.7 | 0.82 | 0.61 | [VFMTok-2B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt)
+VFMTok-3B | 3.1B   |  200   | 2.04 | 5.43 | 267.8 | 0.82 | 0.61 | [VFMTok-3B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt)
 
 ## Training
 
@@ -125,84 +111,60 @@ ln -s DINOv2-L_folder init_models
 ln -s ImageNetFolder imagenet
 ```
 
-### 2.Hita Tokenizer Training
+### 2.VFMTok Training
 
-1. Training Hita-V tokenizer:
+1. Training VFMTok(DINOv2) tokenizer (see ```scripts/tokenizer/train_tok.sh```):
 
 ```bash
 export NODE_COUNT=1
 export NODE_RANK=0
 export PROC_PER_NODE=8
-scripts/torchrun.sh vq_train.py --image-size 336 --results-dir output --mixed-precision bf16 --codebook-embed-dim 8 --disc-type patchgan  \
-    --data-path imagenet/lmdb/train_lmdb --global-batch-size 256 --num-workers 4 --ckpt-every 5000 --epochs 50 --log-every 1 --lr 1e-4    \
-    --transformer-config configs/hita_vqgan.yaml --ema --z-channels 512
-```
-
-2. Training Hita-V tokenizer:
-
-```bash
-scripts/torchrun.sh vq_train.py --image-size 336 --results-dir output --mixed-precision bf16 --codebook-embed-dim 8 --disc-type dinogan  \
-    --data-path imagenet/lmdb/train_lmdb --global-batch-size 256 --num-workers 4 --ckpt-every 5000 --epochs 50 --log-every 1 --lr 1e-4   \
-    --transformer-config configs/hita_vqgan_ultra.yaml --ema --z-channels 512 --enable-vfm-recon
+scripts/autoregressive/torchrun.sh vq_train.py  --image-size 336 --results-dir output --mixed-precision bf16 --codebook-slots-embed-dim 12    \
+    --data-path imagenet/lmdb/train_lmdb --global-batch-size 16 --num-workers 4 --ckpt-every 5000 --epochs 50 \
+    --transformer-config configs/vit_transformer.yaml --log-every 1 --lr 1e-4 --ema --z-channels 512
 ```
 
 ### 3. AR generative model training
 
-1. Training AR generative models
+1. Training AR generative models (see ```scripts/autoregressive/run_train.sh```)
 
 ```bash
 model_type='GPT-L' # 'GPT-B' 'GPT-XL' 'GPT-XXL' 'GPT-2B'
-scripts/torchrun.sh  \
-    train_c2i.py --gpt-type c2i --image-size 336 --gpt-model ${model_type} --downsample-size 16 --num-workers 4     \
-    --anno-file imagenet/lmdb/train_lmdb --global-batch-size 256 --ckpt-every 10000 --ema --log-every 1             \
-    --results-dir output/vanilla --vq-ckpt pretrained_models/hita-tok.pt --epochs 300 --codebook-embed-dim 8        \
-    --codebook-slots-embed-dim 12 --transformer-config-file configs/hita_vqgan.yaml --mixed-precision bf16 --lr 1e-4
+scripts/autoregressive/torchrun.sh train_c2i.py --gpt-type c2i --image-size 336 --gpt-model ${model_type} --downsample-size 16 --num-workers 4   \
+    --anno-file imagenet/lmdb/train_lmdb --global-batch-size 512 --ckpt-every 10000 --ema --log-every 1 --results-dir output \
+    --vq-model VQ-16 --vq-ckpt tokenizer/vfmtok-tokenizer.pt --latent-size 16 --mixed-precision bf16 --epochs 300
 ```
 
 2. Resume from an AR generative checkpoint
 ```bash
 model_type='GPT-L'
-scripts/torchrun.sh  \
-    train_c2i.py --gpt-type c2i --image-size 336 --gpt-model ${model_type} --downsample-size 16 --num-workers 4     \
-    --anno-file imagenet/lmdb/train_lmdb --global-batch-size 270 --ckpt-every 10000 --ema --log-every 1             \
-    --results-dir output/vanilla --vq-ckpt pretrained_models/hita-tok.pt --epochs 300 --codebook-embed-dim 8        \
-    --codebook-slots-embed-dim 12 --transformer-config-file configs/hita_vqgan.yaml --mixed-precision bf16          \
-    --lr 1e-4 --gpt-ckpt output/vanilla/${model_type}/${model_type}-{ckpt_name}.pt
+scripts/autoregressive/torchrun.sh train_c2i.py --gpt-type c2i --image-size 336 --gpt-model ${model_type} --downsample-size 16 --num-workers 4   \
+    --anno-file imagenet/lmdb/train_lmdb --global-batch-size 512 --ckpt-every 10000 --ema --log-every 1 --results-dir output \
+    --vq-model VQ-16 --vq-ckpt tokenizer/vfmtok-tokenizer.pt --latent-size 16 --mixed-precision bf16 --epochs 300 \
+    --gpt-ckpt output/vanilla/${model_type}/${model_type}-{ckpt_name}.pt
 ```
 
 ### 4. Evaluation (ImageNet 256x256)
 
-1. Evaluated a pretrained Hita-V tokenizer
+1. Evaluated a pretrained tokenizer (see ```scripts/tokenizer/run_tok.sh```):
 
 ```bash
-scripts/torchrun.sh  \
-        vqgan_test.py --vq-model VQ-16 --image-size 336 --output_dir recons --batch-size 50   \
-        --transformer-config-file configs/hita_vqgan.yaml --z-channels 512                    \
-        --vq-ckpt pretrained_models/hita-tok.pt
+scripts/autoregressive/torchrun.sh vqgan_test.py --vq-model VQ-16 --image-size 336 --output_dir recons --batch-size $1   \
+        --z-channels 512 --vq-ckpt tokenizer/vfmtok-tokenizer.pt --codebook-slots-embed-dim 12
 ```
 
-2. Evaluate a pretrained Hita-U tokenizer:
-
-```bash
-scripts/torchrun.sh  \
-        vqgan_test.py --vq-model VQ-16 --image-size 336 --output_dir recons --batch-size 50   \
-        --transformer-config-file configs/hita_vqgan_ultra.yaml --z-channels 512              \
-        --vq-ckpt pretrained_models/hita-ultra.pt
-```
-
-3. Evaluate a pretrained AR generative model
+2. Evaluate a pretrained AR generative model (see ```scripts/autoregressive/run_test.sh```)
 
 ```bash
 model_type='GPT-L' # 'GPT-B' 'GPT-XL' 'GPT-XXL' 'GPT-2B'
-scripts/torchrun.sh  \
-         test_net.py --vq-ckpt pretrained_models/hita-ultra.pt --gpt-ckpt output/ultra/${model_type}/${model_type}-$1.pt      \
-         --num-slots 128 --gpt-model ${model_type} --image-size 336 --compile --sample-dir samples --cfg-scale $2             \
-         --image-size-eval 256 --precision bf16 --per-proc-batch-size $3 --codebook-embed-dim 8 --codebook-slots-embed-dim 12 \
-         --transformer-config-file configs/hita_vqgan_ultra.yaml
+scripts/autoregressive/torchrun.sh test_net.py --vq-ckpt tokenizer/vfmtok-tokenizer.pt            \
+    --gpt-ckpt snapshot/model_dump/${model_type}-$1.pt --compile --gpt-model ${model_type} --image-size 336 \
+    --sample-dir samples --image-size-eval 256 --cfg-scale $2 --precision bf16 --per-proc-batch-size $3   \
+    --codebook-slots-embed-dim 12 --latent-size 16
 ```
 ## Citation
 
-If you find Hita useful for your research and applications, please kindly cite using this BibTeX:
+If you find VFMTok useful for your research and applications, please kindly cite using this BibTeX:
 ```
 @article{zheng2025holistic,
   title={Holistic Tokenizer for Autoregressive Image Generation},
@@ -219,12 +181,12 @@ If you find Hita useful for your research and applications, please kindly cite u
 ```
 
 ## License
-The majority of this project is licensed under MIT License. Portions of the project are available under separate license of referred projects, detailed in corresponding files.
+The majority of this project is licensed under Apacha 2.0 License. Portions of the project are available under separate license of referred projects, detailed in corresponding files.
 
 
 ## Acknowledgement
 
-Our codebase builds upon several excellent open-source projects, including [LlamaGen](https://github.com/FoundationVision/LlamaGen) and [Paintmind](https://github.com/Qiyuan-Ge/PaintMind). We are grateful to the communities behind them.
+Our codebase builds upon several excellent open-source projects, including [LlamaGen](https://github.com/FoundationVision/LlamaGen), [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR), [Hita](https://github.com/CVMI-Lab/Hita) and [Paintmind](https://github.com/Qiyuan-Ge/PaintMind). We are grateful to the communities behind them.
 
 ## Contact
 This codebase has been cleaned up but has not undergone extensive testing. If you encounter any issues or have questions, please open a GitHub issue. We appreciate your feedback!
