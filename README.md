@@ -40,7 +40,7 @@ If you are not using Linux, do *NOT* proceed.
 1. Clone this repository and navigate to Hita folder
 ```bash
 git clone https://github.com/CVMI-Lab/VFMTok.git
-cd Hita
+cd VFMTok
 ```
 
 2. Install Package
@@ -77,8 +77,8 @@ VFMTok |  256   | 0.98 | 215.4   | [hita-vanilla.pt](https://huggingface.co/yexi
 ### 2. AR generation models with classifier-free guidance.
 Once the trained VFMTok(DINOv2) is integrated into autoregressive (AR) generative models, it ahieves notable image generation performance.
 
-Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight 
----      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|  |:---:|
+Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight  |
+---      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|:---:|
 VFMTok-B  | 111M   |  300   | 3.43 | 5.88 | 252.2 | 0.85 | 0.53 | [VFMTok-B-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)
 VFMTok-L  | 343M   |  300   | 2.76 | 5.69 | 276.1 | 0.84 | 0.57 | [VFMTok-L-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)
 VFMTok-XL | 775M   |  200   | 2.38 | 5.54 | 277.2 | 0.83 | 0.60 | [VFMTok-XL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt)
@@ -89,8 +89,8 @@ VFMTok-3B | 3.1B   |  200   | 2.07 | 6.23 | 280.4 | 0.82 | 0.61 | [VFMTok-3B-200
 ### 3. AR generation with CFG-free guidance
 The trained VFMTok(DINOv2), when integrated into the AR generation models, can also achieve impressive image generation quality without CFG-guidance (CFG-free guidance).
 
-Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight 
----      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|  |:---:|
+Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight |
+---      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:| :---:|
 VFMTok-B  | 111M   |  300   | 3.09 | 5.67 | 173.6 | 0.80 | 0.58 | [VFMTok-B-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)
 VFMTok-L  | 343M   |  300   | 2.15 | 5.44 | 230.1 | 0.82 | 0.60 | [VFMTok-L-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)
 VFMTok-XL | 775M   |  200   | 2.06 | 5.59 | 257.2 | 0.82 | 0.61 | [VFMTok-XL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt)
