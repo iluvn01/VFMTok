@@ -74,7 +74,7 @@ Method | tokens | rFID (256x256) | rIS (256x256)    | weight
 ---    | :---:  |:---:|:---:   | :---: 
 VFMTok |  256   | 0.98 | 215.4   | [vfmtok-tokenizer.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/tokenizer/vfmtok-tokenizer.pt)
 
-### 2. AR generation models with classifier-free guidance.
+### 2. AR generation models with classifier-free guidance (CFG).
 Once the trained VFMTok(DINOv2) is integrated into autoregressive (AR) generative models, it ahieves notable image generation performance.
 
 Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. |
@@ -86,7 +86,7 @@ Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. |
 [VFMTok-2B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt) | 2.0B   |  200   | 2.27 | 5.56 | 283.6 | 0.82 | 0.61 |
 [VFMTok-3B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt) | 3.1B   |  200   | 2.07 | 5.46 | 280.4 | 0.82 | 0.61 |
 
-### 3. AR generation with CFG-free guidance
+### 3. AR generation without CFG.
 The trained VFMTok(DINOv2), when integrated into the AR generation models, can also achieve impressive image generation quality without CFG-guidance (CFG-free guidance).
 
 Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. |
