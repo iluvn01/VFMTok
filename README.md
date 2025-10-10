@@ -84,7 +84,7 @@ Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. |
 [VFMTok-XL](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt) | 775M   |  200   | 2.38 | 5.54 | 277.2 | 0.83 | 0.60 |
 [VFMTok-XXL](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt)| 1.4B   |  200   | 2.28 | 5.49 | 274.3 | 0.83 | 0.60 |
 [VFMTok-2B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt) | 2.0B   |  200   | 2.27 | 5.56 | 283.6 | 0.82 | 0.61 |
-[VFMTok-3B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt) | 3.1B   |  200   | 2.07 | 6.23 | 280.4 | 0.82 | 0.61 |
+[VFMTok-3B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt) | 3.1B   |  200   | 2.07 | 5.46 | 280.4 | 0.82 | 0.61 |
 
 ### 3. AR generation with CFG-free guidance
 The trained VFMTok(DINOv2), when integrated into the AR generation models, can also achieve impressive image generation quality without CFG-guidance (CFG-free guidance).
