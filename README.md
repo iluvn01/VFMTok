@@ -77,26 +77,26 @@ VFMTok |  256   | 0.98 | 215.4   | [vfmtok-tokenizer.pt](https://huggingface.co/
 ### 2. AR generation models with classifier-free guidance.
 Once the trained VFMTok(DINOv2) is integrated into autoregressive (AR) generative models, it ahieves notable image generation performance.
 
-Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight  |
----      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|:---:|
-VFMTok-B  | 111M   |  300   | 3.43 | 5.88 | 252.2 | 0.85 | 0.53 | [VFMTok-B-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)
-VFMTok-L  | 343M   |  300   | 2.76 | 5.69 | 276.1 | 0.84 | 0.57 | [VFMTok-L-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)
-VFMTok-XL | 775M   |  200   | 2.38 | 5.54 | 277.2 | 0.83 | 0.60 | [VFMTok-XL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt)
-VFMTok-XXL| 1.4B   |  200   | 2.28 | 5.49 | 274.3 | 0.83 | 0.60 | [VFMTok-XXL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt)
-VFMTok-2B | 2.0B   |  200   | 2.27 | 5.56 | 283.6 | 0.82 | 0.61 | [VFMTok-2B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt)
-VFMTok-3B | 3.1B   |  200   | 2.07 | 6.23 | 280.4 | 0.82 | 0.61 | [VFMTok-3B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt)
+Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. |
+---      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|
+[VFMTok-B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)  | 111M   |  300   | 3.43 | 5.88 | 252.2 | 0.85 | 0.53 |
+[VFMTok-L](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)  | 343M   |  300   | 2.76 | 5.69 | 276.1 | 0.84 | 0.57 |
+[VFMTok-XL](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt) | 775M   |  200   | 2.38 | 5.54 | 277.2 | 0.83 | 0.60 |
+[VFMTok-XXL](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt)| 1.4B   |  200   | 2.28 | 5.49 | 274.3 | 0.83 | 0.60 |
+[VFMTok-2B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt) | 2.0B   |  200   | 2.27 | 5.56 | 283.6 | 0.82 | 0.61 |
+[VFMTok-3B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt) | 3.1B   |  200   | 2.07 | 6.23 | 280.4 | 0.82 | 0.61 |
 
 ### 3. AR generation with CFG-free guidance
 The trained VFMTok(DINOv2), when integrated into the AR generation models, can also achieve impressive image generation quality without CFG-guidance (CFG-free guidance).
 
-Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. | weight |
----      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:| :---:|
-VFMTok-B  | 111M   |  300   | 3.09 | 5.67 | 173.6 | 0.80 | 0.58 | [VFMTok-B-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt)
-VFMTok-L  | 343M   |  300   | 2.15 | 5.44 | 230.1 | 0.82 | 0.60 | [VFMTok-L-300e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)
-VFMTok-XL | 775M   |  200   | 2.06 | 5.59 | 257.2 | 0.82 | 0.61 | [VFMTok-XL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt)
-VFMTok-XXL| 1.4B   |  200   | 2.09 | 5.48 | 259.3 | 0.82 | 0.61 | [VFMTok-XXL-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt)
-VFMTok-2B | 2.0B   |  200   | 2.20 | 5.54 | 279.7 | 0.82 | 0.61 | [VFMTok-2B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt)
-VFMTok-3B | 3.1B   |  200   | 2.04 | 5.43 | 267.8 | 0.82 | 0.61 | [VFMTok-3B-200e.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt)
+Method   | params | epochs | FID | sFID |  IS  | Pre. | Rec. |
+---      | :---:  | :---:  | :---:| :---: |:---: | :---:|:---:|
+[VFMTok-B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-B/GPT-B-300e.pt) | 111M   |  300   | 3.09 | 5.67 | 173.6 | 0.80 | 0.58 |
+[VFMTok-L](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-L/GPT-L-300e.pt)  | 343M   |  300   | 2.15 | 5.44 | 230.1 | 0.82 | 0.60 |
+[VFMTok-XL](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XL/GPT-XL-200e.pt) | 775M   |  200   | 2.06 | 5.59 | 257.2 | 0.82 | 0.61 |
+[VFMTok-XXL](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-XXL/GPT-XXL-200e.pt) | 1.4B   |  200   | 2.09 | 5.48 | 259.3 | 0.82 | 0.61 |
+[VFMTok-2B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-2B/GPT-2B-200e.pt) | 2.0B   |  200   | 2.20 | 5.54 | 279.7 | 0.82 | 0.61 |
+[VFMTok-3B](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/GPT-3B/GPT-3B-200e.pt)| 3.1B   |  200   | 2.04 | 5.43 | 267.8 | 0.82 | 0.61 |
 
 ## Training
 
