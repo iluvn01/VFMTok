@@ -58,7 +58,7 @@ pip install flash-attn --no-build-isolation
 ```
 4. Install deformable attention module
 ```
-vfmtok/modules/ops
+cd vfmtok/modules/ops
 bash make.sh
 ```
 ## Model Zoom
