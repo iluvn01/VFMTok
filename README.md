@@ -64,15 +64,15 @@ bash make.sh
 ## Model Zoom
 
 In this repo, we release:
-* One image tokenizers: VFMTok(DINOv2).
-* Class-conditional autoregressive generative models ranging from 100M to 3B parameters.
+* One image tokenizers: **VFMTok(DINOv2)**.
+* Class-conditional autoregressive generative models ranging from **111M** to **3B** parameters.
 
 ### 1. VQ-VAE models
-In this repo, we release one image tokenizers: VFMTok(DINOv2). It directly utilizes the features from the frozen pre-trained VFM -- DINOv2, to reconstruct the image. To achieve this, VFMTok innovatively designed two key components: (1) a region-adaptive quantization framework that reduces redundancy in the pre-trained features on regular 2D grids, and (2) a semantic reconstruction objective that aligns the tokenizer’s outputs with the foundation model’s representations to preserve semantic fidelity. VFMTok exhibits better image reconstruction and semantic fidelity compared to the others.
+In this repo, we release one image tokenizers: VFMTok(DINOv2). It directly utilizes the features from the frozen pre-trained VFM -- DINOv2, to reconstruct the image. Besides, VFMToks also designs 2 key components: region-adaptive quantization and semantic reconstruction to reduce the redundancy in the pretrained features and maintain the semantic fidelity, respectively.
 
 Method | tokens | rFID (256x256) | rIS (256x256)    | weight
 ---    | :---:  |:---:|:---:   | :---: 
-VFMTok |  256   | 0.98 | 215.4   | [hita-vanilla.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/tokenizer/vfmtok-tokenizer.pt)
+VFMTok |  256   | 0.98 | 215.4   | [vfmtok-tokenizer.pt](https://huggingface.co/yexiguafu/VFMTok/blob/main/DINOv2/tokenizer/vfmtok-tokenizer.pt)
 
 ### 2. AR generation models with classifier-free guidance.
 Once the trained VFMTok(DINOv2) is integrated into autoregressive (AR) generative models, it ahieves notable image generation performance.
