@@ -68,7 +68,7 @@ In this repo, we release:
 * Class-conditional autoregressive generative models ranging from **111M** to **3B** parameters.
 
 ### 1. VQ-VAE models
-In this repo, we release one image tokenizer: VFMTok(DINOv2). It directly utilizes the features from the frozen pre-trained VFM -- DINOv2, to reconstruct the image. Besides, VFMToks also designs 2 key components: region-adaptive quantization and semantic reconstruction to reduce the redundancy in the pretrained features and maintain the semantic fidelity, respectively.
+In this repo, we release one image tokenizer: VFMTok(DINOv2). It directly utilizes the features from the frozen pre-trained VFM -- DINOv2, to reconstruct the image. Besides, VFMToks also designs 2 key components: **region-adaptive quantization** and **semantic reconstruction** to reduce the redundancy in the pretrained features and maintain the semantic fidelity, respectively.
 
 Method | tokens | rFID (256x256) | rIS (256x256)    | weight
 ---    | :---:  |:---:|:---:   | :---: 
